@@ -12,7 +12,13 @@ public class EmployeeService {
         return Employee.count();
     }
 
-    public void saveEmployee(Employee employee) { }
+    public void saveEmployee(Employee employee) {
+        if(employee.isNew()) {
+            employee.create();
+            return;
+        }
+        employee.update();
+    }
 
     public boolean giveIncrementToAllEmployeesOf(int percentage) {
         try{

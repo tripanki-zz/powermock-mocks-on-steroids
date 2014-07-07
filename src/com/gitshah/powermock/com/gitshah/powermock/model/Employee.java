@@ -17,6 +17,37 @@ public class Employee {
     }
 
     public void save() {
+    }
 
+    /**
+     * The method that identifies if the employee
+     * is not yet persisted in the DB.
+     * @return true if employee is not yet
+     * persisted in the DB, false otherwise.
+     * Currently this method throws
+     * UnsupportedOperationException
+     */
+    public boolean isNew() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * This method is responsible to update
+     * an existing employee's information into the DB.
+     * Currently this method throws
+     * UnsupportedOperationException
+     */
+    public void update() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * This method is responsible to create
+     * a new employee into the DB.
+     * Currently this method throws
+     * UnsupportedOperationException
+     */
+    public void create() {
+        throw new UnsupportedOperationException();
     }
 }

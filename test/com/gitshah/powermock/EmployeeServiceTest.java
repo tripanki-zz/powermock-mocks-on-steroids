@@ -4,6 +4,7 @@ import com.gitshah.powermock.com.gitshah.powermock.model.Employee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -45,4 +46,23 @@ public class EmployeeServiceTest {
         Assert.assertFalse(employeeService.giveIncrementToAllEmployeesOf(10));
     }
 
+    @Test
+    public void shouldCreateNewEmployeeIfEmployeeIsNew() {
+        Employee mock = PowerMockito.mock(Employee.class);
+        PowerMockito.when(mock.isNew()).thenReturn(true);
+        EmployeeService employeeService = new EmployeeService();
+        employeeService.saveEmployee(mock);
+
+        /*
+            Verifying that the create method was indeed invoked
+            on the employee instance.
+         */
+        Mockito.verify(mock).create();
+
+        /*
+            Verifying that while creating a new employee
+            update was never invoked.
+        */
+        Mockito.verify(mock, Mockito.never()).update();
+    }
 }
