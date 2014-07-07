@@ -24,4 +24,25 @@ public class EmployeeServiceTest {
         EmployeeService employeeService = new EmployeeService();
         Assert.assertEquals(900, employeeService.getEmployeeCount());
     }
+
+    @Test
+    public void shouldReturnTrueWhenIncrementOf10PercentageIsGivenSuccessfully() {
+        PowerMockito.mockStatic(Employee.class);
+        PowerMockito.doNothing().when(Employee.class);
+
+        Employee.giveIncrementOf(10);
+        EmployeeService employeeService = new EmployeeService();
+        Assert.assertTrue(employeeService.giveIncrementToAllEmployeesOf(10));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenIncrementOf10PercentageIsNotGivenSuccessfully() {
+        PowerMockito.mockStatic(Employee.class);
+        PowerMockito.doThrow(new IllegalStateException()).when(Employee.class);
+
+        Employee.giveIncrementOf(10);
+        EmployeeService employeeService = new EmployeeService();
+        Assert.assertFalse(employeeService.giveIncrementToAllEmployeesOf(10));
+    }
+
 }

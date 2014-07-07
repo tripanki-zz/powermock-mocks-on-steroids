@@ -14,4 +14,13 @@ public class EmployeeService {
 
     public void saveEmployee(Employee employee) { }
 
+    public boolean giveIncrementToAllEmployeesOf(int percentage) {
+        try{
+            Employee.giveIncrementOf(percentage);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
 }
