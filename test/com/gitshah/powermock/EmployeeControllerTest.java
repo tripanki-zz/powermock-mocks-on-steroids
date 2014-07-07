@@ -1,7 +1,8 @@
 package com.gitshah.powermock;
 
-import org.junit.Assert;
+import com.gitshah.powermock.com.gitshah.powermock.model.Employee;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
 /**
@@ -9,13 +10,14 @@ import org.powermock.api.mockito.PowerMockito;
  * For further queries/suggestions please mail at ankittripathi0000@gmail.com.
  */
 public class EmployeeControllerTest {
+
     @Test
     public void shouldGetCountOfEmployees() {
         EmployeeService mock = PowerMockito.mock(EmployeeService.class);
         EmployeeController employeeController = new EmployeeController(mock);
+        Employee employee = new Employee();
 
-        PowerMockito.when(mock.getEmployeeCount()).thenReturn(8);
-
-        Assert.assertEquals(10, employeeController.getProjectedEmployeeCount());
+        employeeController.saveEmployee(employee);
+        Mockito.verify(mock).saveEmployee(employee);
     }
 }
