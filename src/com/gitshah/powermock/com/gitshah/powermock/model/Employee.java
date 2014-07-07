@@ -16,4 +16,7 @@ public class Employee {
         throw new UnsupportedOperationException();
     }
 
+    public void save() {
+
+    }
 }
