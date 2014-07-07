@@ -1,7 +1,8 @@
 package com.gitshah.powermock;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.api.mockito.PowerMockito;
 
 /**
  * Created by Ankit Tripathi on 07-07-2014.
@@ -10,7 +11,11 @@ import org.junit.Test;
 public class EmployeeControllerTest {
     @Test
     public void shouldGetCountOfEmployees() {
-        EmployeeController employeeController = new EmployeeController(new EmployeeService());
-        assertEquals(10, employeeController.getProjectedEmployeeCount());
+        EmployeeService mock = PowerMockito.mock(EmployeeService.class);
+        EmployeeController employeeController = new EmployeeController(mock);
+
+        PowerMockito.when(mock.getEmployeeCount()).thenReturn(8);
+
+        Assert.assertEquals(10, employeeController.getProjectedEmployeeCount());
     }
 }
